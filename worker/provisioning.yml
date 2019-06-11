@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - role: worker/common-packages
+    - role: worker/disabling-swaping
+    - role: worker/install-kubelet
+    - role: worker/init-kubernetes-cluster
+    - role: worker/join-nodes-to-cluster
+  # setup a handler for checking Docker daemon using the below code.
+  handlers:
+    - name: docker status
+      service: name=docker state=started

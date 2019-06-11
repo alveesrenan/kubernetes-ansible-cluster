@@ -1,0 +1,8 @@
+# setup the kube config file for the vagrant user to access the Kubernetes cluster using the below code.
+- name: Setup kubeconfig for vagrant user
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p /home/vagrant/.kube
+    - cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
+    - chown vagrant:vagrant /home/vagrant/.kube/config
+

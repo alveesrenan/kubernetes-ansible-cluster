@@ -1,0 +1,21 @@
+FROM ubuntu:16.04
+
+USER root
+
+RUN apt-get update && \
+    apt-get install sudo git python-software-properties software-properties-common -y >> /dev/null && \
+    apt-add-repository ppa:ansible/ansible && \
+    apt-get update && \
+    apt-get install ansible python-apt -y >> /dev/null
+
+RUN apt-get install python-apt -y >> /dev/null
+
+ENV USER runner
+ENV FOLDER /runner
+RUN /usr/sbin/groupadd $USER && \
+    /usr/sbin/useradd $USER -m -d $FOLDER -g $USER -s /bin/bash && \
+    echo $USER 'ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER $USER
+
+WORKDIR $FOLDER

@@ -1,0 +1,16 @@
+FROM ansible/centos7-ansible
+
+USER root
+
+RUN yum clean all && \
+    yum -y update && yum install -y sudo
+
+ENV USER runner
+ENV FOLDER /runner
+RUN /usr/sbin/groupadd $USER && \
+    /usr/sbin/useradd $USER -m -d $FOLDER -g $USER -s /bin/bash && \
+    echo $USER 'ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER $USER
+
+WORKDIR $FOLDER
