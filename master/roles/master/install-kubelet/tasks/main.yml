@@ -21,7 +21,7 @@
       - kubeadm 
       - kubectl
 
-- name: Configure node ip
+- name: Configure node ip on node ip {{ node_ip }}
   lineinfile:
     path: /etc/default/kubelet
     line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}

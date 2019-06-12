@@ -1,14 +1,14 @@
 ---
-- hosts: all
-  become: true
+- hosts: kubernetes-master-nodes
+  become: yes
   roles:
-    - role: worker/common-packages
-    - role: worker/disabling-swaping
-    - role: worker/install-kubelet
-    - role: worker/init-kubernetes-cluster
-    - role: worker/kube-config-file
-    - role: worker/container-networking
-    - role: worker/join-nodes-to-cluster
+    - role: master/common-packages
+    - role: master/disabling-swaping
+    - role: master/install-kubelet
+    - role: master/init-kubernetes-cluster
+    - role: master/kube-config-file
+    - role: master/container-networking
+    - role: master/join-nodes-to-cluster
   # setup a handler for checking Docker daemon using the below code.
   handlers:
     - name: docker status

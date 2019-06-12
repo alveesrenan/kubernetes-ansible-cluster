@@ -1,0 +1,4 @@
+.vscode/
+.vagrant/
+.ansible/
+provisioning.retry

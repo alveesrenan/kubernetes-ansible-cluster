@@ -8,8 +8,6 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install ansible python-apt -y >> /dev/null
 
-RUN apt-get install python-apt -y >> /dev/null
-
 ENV USER runner
 ENV FOLDER /runner
 RUN /usr/sbin/groupadd $USER && \
