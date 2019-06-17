@@ -1,4 +1,5 @@
 # setup the container networking provider and the network policy engine using the below code.
 - name: Install calico pod network
-  become: false
+  become: yes
+  become_user: ubuntu
   command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
