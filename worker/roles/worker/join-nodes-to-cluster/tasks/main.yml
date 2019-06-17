@@ -1,6 +1,13 @@
 # generate kube join command for joining the node to the Kubernetes cluster and store the command in the file named join-command.
-- name: Copy the join command to server location
-  copy: src=join-command dest=/tmp/join-command.sh mode=0777
+- name: Getting join-command.sh from bucket {{ s3-bucket }}
+  s3:
+    bucket: "{{ s3-bucket }}"
+    object: /join-commnad.sh
+    dest: /tmp/join-command.sh
+    mpde: get
+
+# - name: Copy the join command to server location
+#   copy: src=./join-command dest=/tmp/join-command.sh mode=0777
 
 - name: Join the node to cluster
   command: sh /tmp/join-command.sh

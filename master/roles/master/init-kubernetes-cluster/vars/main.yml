@@ -1,2 +1,2 @@
-node_ip: 172.168.0.10
-pod_network_cidr: 172.168.0.0/26
+node_ip: 172.168.0.81
+pod_network_cidr: 192.168.0.0/16

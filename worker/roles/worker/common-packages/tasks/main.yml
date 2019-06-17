@@ -35,7 +35,7 @@
   notify:
     - docker status
 
-- name: Add vagrant user to docker group
+- name: Add ubuntu user to docker group
   user:
-    name: vagrant
+    name: ubuntu
     group: docker

@@ -34,3 +34,8 @@
     - containerd.io
   notify:
     - docker status
+
+- name: Add ubuntu user to docker group
+  user:
+    name: ubuntu
+    group: docker

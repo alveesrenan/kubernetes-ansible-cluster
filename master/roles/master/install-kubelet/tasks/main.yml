@@ -20,10 +20,11 @@
       - kubelet 
       - kubeadm 
       - kubectl
+      - kubernetes-cni
 
 - name: Configure node ip on node ip {{ node_ip }}
   lineinfile:
-    path: /etc/default/kubelet
+    path: /usr/bin/kubelet
     line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
 
 - name: Restart kubelet

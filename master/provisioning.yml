@@ -6,7 +6,7 @@
     - role: master/disabling-swaping
     - role: master/install-kubelet
     - role: master/init-kubernetes-cluster
-    - role: master/kube-config-file
+    - role: master/setup-user-to-access-cluster
     - role: master/container-networking
     - role: master/join-nodes-to-cluster
   # setup a handler for checking Docker daemon using the below code.

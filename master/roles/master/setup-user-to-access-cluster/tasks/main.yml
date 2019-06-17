@@ -1,0 +1,12 @@
+# setup the kube config file for the ubuntu user to access the Kubernetes cluster using the below code.
+- name: Creating user for kubeconfig
+  file:
+    path: /home/ubuntu/.kube
+    state: directory
+
+- name: Setup kubeconfig for ubuntu user
+  command: "{{ item }}"
+  with_items:
+    - cp -i /etc/kubernetes/admin.conf /home/ubuntu/.kube/config
+    - chown ubuntu:ubuntu /home/ubuntu/.kube/config
+
