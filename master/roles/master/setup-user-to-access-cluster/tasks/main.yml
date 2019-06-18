@@ -9,4 +9,5 @@
   with_items:
     - cp -i /etc/kubernetes/admin.conf /home/ubuntu/.kube/config
     - chown ubuntu:ubuntu /home/ubuntu/.kube/config
+    # - chown $(id -un):$(id -gn) /home/ubuntu/.kube/config
 

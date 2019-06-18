@@ -1,2 +1,3 @@
-node_ip: 172.168.0.72
+node_ip: 172.168.0.142
+node_name: kubernetes-master
 pod_network_cidr: 192.168.0.0/16

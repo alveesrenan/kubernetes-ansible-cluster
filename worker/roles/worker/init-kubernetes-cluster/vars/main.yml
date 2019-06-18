@@ -1,3 +1,0 @@
-node_ip: 172.168.0.41
-pod_network_cidr_worker1: 172.168.0.0/16
-pod_network_cidr_worker2: 172.168.0.0/16

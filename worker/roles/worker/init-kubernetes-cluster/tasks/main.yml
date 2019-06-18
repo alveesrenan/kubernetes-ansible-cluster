@@ -1,3 +1,0 @@
-# initialize the Kubernetes cluster with kubeadm using the below code (applicable only on master node).
-- name: Initialize the Kubernetes cluster using kubeadm
-  command: kubeadm init --apiserver-advertise-address="{{ node_ip }}" --node-name k8s-master --pod-network-cidr={{ pod_network_cidr }} --ignore-preflight-errors=all

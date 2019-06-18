@@ -1,1 +1,1 @@
-s3-bucket: kubernetes-multi-node-cluster-ansible
+s3_bucket: kubernetes-multi-node-cluster-ansible
