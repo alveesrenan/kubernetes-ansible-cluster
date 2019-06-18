@@ -1,14 +1,41 @@
+# Ensuring that python pip is installed
+- name: Check to see if pip is already installed
+  command: "pip --version"
+  ignore_errors: true
+  register: pip_is_installed
+  changed_when: false
+
+- name: Download get-pip.py if pip is not installed
+  get_url: 
+    url: https://bootstrap.pypa.io/get-pip.py  
+    dest: /tmp
+  when: pip_is_installed.rc != 0
+
+- name: Installing pip
+  command: "python /tmp/get-pip.py"
+  when: pip_is_installed.rc != 0
+
+- name: Ensure boto and boto3 modules are installed
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - boto3
+    - botocore
+  when: pip_is_installed.rc != 0
+
 # generate kube join command for joining the node to the Kubernetes cluster and store the command in the file named join-command.
 - name: Generate join command
   command: kubeadm token create --print-join-command
   register: join_command
 
 - name: Copy join command to local file
-  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="/tmp/join-command.sh" mode=0777
+  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command.sh" mode=0777
 
-- name: Storing join command to s3 bucket {{ s3_bucket }}
-  aws_s3:
-    bucket: "{{ s3_bucket }}"
-    object: /join-commnad.sh
-    src: ./join-command
-    mode: put
+# - name: Storing join command to s3 bucket {{ s3_bucket }}
+#   aws_s3:
+#     bucket: "{{ s3_bucket }}"
+#     object: join-command.sh
+#     src: /home/ubuntu/playbook/master/join-command.sh
+#     mode: put
+#     aws_access_key: "{{ s3_access_key }}"
+#     aws_secret_key: "{{ s3_secret_access_key }}"

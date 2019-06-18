@@ -1,1 +1,3 @@
 s3_bucket: kubernetes-multi-node-cluster-ansible
+s3_access_key: ###
+s3_secret_access_key: ###
