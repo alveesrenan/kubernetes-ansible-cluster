@@ -9,11 +9,10 @@
 
 - name: Copy the join command to server location
   copy: 
-    src: join-command 
-    dest: /tmp/join-command.sh 
-    mode: 0777
+    src: ../join-command.sh
+    dest: /tmp/join-command.sh
 
 - name: Join the node to cluster
   become: yes
   become_user: root
-  command: sh /tmp/join-command.sh
+  command: eval $(cat /tmp/join-command.sh)
